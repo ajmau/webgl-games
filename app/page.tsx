@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
 
   const session = await getSession();
+  console.log("session: ", session)
   if (!session) {
     redirect('/login');
   }
