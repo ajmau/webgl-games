@@ -2,11 +2,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { login } from "@/lib/auth";
-
-// Dummy user credentials
-const USERS = [
-  { username: "test", password: "password123", name: "John Doe" },
-];
+import { redirect } from "next/navigation";
+import {  BasicCard } from "../components/BasicCard";
 
 export default function LoginPage() {
   const [error, setError] = useState("");
@@ -26,7 +23,7 @@ export default function LoginPage() {
         }
 
         if (result.status === "ok") {
-            alert("LOGIN SUCCESSFUL")
+            redirect("/");
         }
 
     } else {
@@ -36,7 +33,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-100 font-sans">
-      <div className="bg-gray-700 p-10 rounded-xl shadow-lg w-full max-w-md">
+      <BasicCard>
         <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
         <form action={loginUser} className="space-y-4">
           <div>
@@ -66,7 +63,7 @@ export default function LoginPage() {
           </button>
         </form>
         <Link href="/signup">Don't have an account?</Link>
-      </div>
+      </BasicCard>
     </div>
   );
 }
